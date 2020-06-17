@@ -115,13 +115,25 @@ console.log(subaruOutback)
 //Stretch
 
 Car.prototype.drive = function(distance){
+  if(distance < this.tank * this.milesPerGallon){
   this.odometer += distance;
-  this.tank -= (distance / this.milesPerGallon)
+  this.tank -= (distance / this.milesPerGallon);
+  } else { 
+  this.odometer += this.tank * this.milesPerGallon;
+  this.tank = 0;
+  return `I ran out of fuel at ${this.odometer} miles`;
+  }
 }
 
 subaruOutback.drive(210) //drove 210 miles
 console.log(subaruOutback)
-
+console.log(subaruOutback.drive(500))
+subaruOutback.drive(500)
+console.log(subaruOutback)
+subaruOutback.fill(8)
+console.log(subaruOutback)
+subaruOutback.drive(90)
+console.log(subaruOutback)
 
 /*
   TASK 3
@@ -130,9 +142,27 @@ console.log(subaruOutback)
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+function Baby(name, age, favoriteToy) {
+  Person.call(this,name,age)
+  this.favoriteToy = favoriteToy
+ }
 
+Baby.prototype = Object.create(Person.prototype)
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
 }
+
+const simona = new Baby("Simona", 0.3 , "giraffe")
+
+console.log(simona)
+console.log(simona.play())
+console.log(simona.toString())
+simona.eat('baby food')
+console.log(simona)
+simona.favoriteToy = "doll"
+simona.poop()
+console.log(simona)
 
 /* 
   TASK 4
