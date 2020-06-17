@@ -39,9 +39,45 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = []
 }
+
+Person.prototype.eat = function(edible){
+  if(this.stomach.length < 10){
+    this.stomach.push(edible);
+  }
+}
+
+//create a poop method
+
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
+
+//method called toString - needs to return a string with name and age
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`
+}
+
+//create an object
+
+const personOne = new Person('Ashton', 34);
+const personTwo = new Person ('Alex', 30);
+
+console.log(personTwo.toString())
+
+personOne.eat('tacos')
+personOne.eat('fried chicken')
+
+console.log(personOne.stomach)
+
+personOne.poop();
+
+console.log(personOne.stomach)
 
 /*
   TASK 2
@@ -57,9 +93,35 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model,milesPerGallon) {
+  this.model = model
+  this.milesPerGallon = milesPerGallon
+  this.tank = 0
+  this.odometer = 0
 }
+
+Car.prototype.fill= function(gallons){
+  this.tank += gallons
+}
+
+const subaruOutback = new Car("Outback", 30)
+console.log(subaruOutback)
+subaruOutback.fill(4) //add 4 gallons
+console.log(subaruOutback) 
+subaruOutback.fill(10) //add 10 gallons
+console.log(subaruOutback)
+
+
+//Stretch
+
+Car.prototype.drive = function(distance){
+  this.odometer += distance;
+  this.tank -= (distance / this.milesPerGallon)
+}
+
+subaruOutback.drive(210) //drove 210 miles
+console.log(subaruOutback)
+
 
 /*
   TASK 3
