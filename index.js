@@ -168,10 +168,10 @@ console.log(simona)
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window Binding - The value of 'this' when in the Window/Global scope refers to the window/console object which comes preset with a variety of methods and properties. 
+  2. Implicit Binding - Occurs when using dot (".") after an object to invoke one of its methods. The object becomes the "this" that the method (function) refers to. 
+  3. New Binding - New binding allows us to take a constructor function and create an new object. This refers to the new set of properties that get passed in to the function.
+  4. Explicit Binding - by using .bind, .call, or .apply we can explicitly define what gets applied in parenthese "()".
 */
 
 
